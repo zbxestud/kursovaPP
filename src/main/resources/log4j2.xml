@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <File name="FileAppender" fileName="application-${date:yyyyMMdd}.log" immediateFlush="false" append="true">
+            <PatternLayout pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <!-->
+        <SMTP name="Mail" subject="Error Log" to="danyil.yaremechko.kn.2022@lpnu.ua" from="jackthebesst@gmail.com"
+              smtpHost="smtp.gmail.com" smtpPort="487" smtpUsername = "jackthebesst@gmail.com"
+              smtpPassword="Vhgd334dLwUnqG" smtpProtocol = "smtps" bufferSize="50">
+        </SMTP>
+        <!-->
+    </Appenders>
+    <Loggers>
+        <!-->
+        <Logger name = "kn11sp.yaremechko.MailLogger" level="error" additivity="true">
+            <AppenderRef ref="Mail"/>
+        </Logger>
+        <!-->
+        <Root level="trace" additivity="true">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
